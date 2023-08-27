@@ -1,0 +1,38 @@
+(lang dune 3.6)
+(name yojson)
+(version 2.0.2)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/yojson))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   yojson.cma
+   yojson.cmi
+   yojson.cmt
+   yojson.cmti
+   yojson.cmx
+   yojson.cmxa
+   yojson.lib
+   yojson.ml
+   yojson.mli))
+ (libexec (yojson.cmxs))
+ (bin (ydump.exe))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name yojson)
+ (kind normal)
+ (synopsis "JSON parsing and printing")
+ (archives (byte yojson.cma) (native yojson.cmxa))
+ (plugins (byte yojson.cma) (native yojson.cmxs))
+ (native_archives yojson.lib)
+ (requires seq)
+ (main_module_name Yojson)
+ (modes byte native)
+ (modules
+  (singleton
+   (name Yojson)
+   (obj_name yojson)
+   (visibility public)
+   (impl)
+   (intf))))

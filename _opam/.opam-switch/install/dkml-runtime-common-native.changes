@@ -1,0 +1,17 @@
+opam-version: "2.0"
+added: [
+  "lib\\dkml-runtime-common-native" {"D"}
+  "lib\\dkml-runtime-common-native\\META" {"F:S231T1693170089.87"}
+  "lib\\dkml-runtime-common-native\\all" {"D"}
+  "lib\\dkml-runtime-common-native\\all\\emptytop" {"D"}
+  "lib\\dkml-runtime-common-native\\all\\emptytop\\dune-project"
+    {"F:S16T1693170089.97"}
+  "lib\\dkml-runtime-common-native\\template.dkmlroot" {"F:S24T1693170089.9"}
+  "lib\\dkml-runtime-common-native\\unix" {"D"}
+  "lib\\dkml-runtime-common-native\\unix\\_common_tool.sh"
+    {"F:S28279T1693170089.93"}
+  "lib\\dkml-runtime-common-native\\unix\\_within_dev.sh"
+    {"F:S6693T1693170089.94"}
+  "lib\\dkml-runtime-common-native\\unix\\crossplatform-functions.sh"
+    {"F:S139692T1693170089.94"}
+]

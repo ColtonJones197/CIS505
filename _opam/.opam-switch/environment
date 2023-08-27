@@ -1,0 +1,7 @@
+OPAM_SWITCH_PREFIX	=	C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505\\_opam	Prefix\ of\ the\ current\ opam\ switch
+PATH	+=	C:\\Users\\Blitz\\AppData\\Local\\Programs\\DISKUV~1\\usr\\bin
+CAML_LD_LIBRARY_PATH	=	C:/Users/Blitz/AppData/Local/Programs/DISKUV~1/lib/ocaml/stublibs;C:/Users/Blitz/AppData/Local/Programs/DISKUV~1/lib/ocaml	Updated\ by\ package\ ocaml
+CAML_LD_LIBRARY_PATH	+=	C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505\\_opam\\lib/stublibs	Updated\ by\ package\ ocaml
+OCAML_TOPLEVEL_PATH	=	C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505\\_opam\\lib\\toplevel	Updated\ by\ package\ ocaml
+MANPATH	=:	C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505\\_opam\\man	Current\ opam\ switch\ man\ dir
+PATH	=+=	C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505\\_opam\\bin	Binary\ dir\ for\ opam\ switch\ C:\\Users\\Blitz\\OneDrive\\Desktop\\school\\CIS505
