@@ -1,0 +1,38 @@
+opam-version: "2.0"
+lib: [
+  "_build/opam" {"opam"}
+  "_build/pkg/META" {"META"}
+  "_build/src/logs.cma" {"logs.cma"}
+  "_build/src/logs.cmi" {"logs.cmi"}
+  "?_build/src/logs.cmti" {"logs.cmti"}
+  "_build/src/logs.cmx" {"logs.cmx"}
+  "_build/src/logs.cmxa" {"logs.cmxa"}
+  "_build/src/logs.cmxs" {"logs.cmxs"}
+  "_build/src/logs.lib" {"logs.lib"}
+  "_build/src/logs.mli" {"logs.mli"}
+  "_build/src/logs_fmt_top_init.ml" {"logs_fmt_top_init.ml"}
+  "_build/src/logs_lwt.cma" {"logs_lwt.cma"}
+  "_build/src/logs_lwt.cmi" {"logs_lwt.cmi"}
+  "?_build/src/logs_lwt.cmti" {"logs_lwt.cmti"}
+  "_build/src/logs_lwt.cmx" {"logs_lwt.cmx"}
+  "_build/src/logs_lwt.cmxa" {"logs_lwt.cmxa"}
+  "_build/src/logs_lwt.cmxs" {"logs_lwt.cmxs"}
+  "_build/src/logs_lwt.lib" {"logs_lwt.lib"}
+  "_build/src/logs_lwt.mli" {"logs_lwt.mli"}
+  "_build/src/logs_threaded.cma" {"logs_threaded.cma"}
+  "_build/src/logs_threaded.cmi" {"logs_threaded.cmi"}
+  "?_build/src/logs_threaded.cmti" {"logs_threaded.cmti"}
+  "_build/src/logs_threaded.cmx" {"logs_threaded.cmx"}
+  "_build/src/logs_threaded.cmxa" {"logs_threaded.cmxa"}
+  "_build/src/logs_threaded.cmxs" {"logs_threaded.cmxs"}
+  "_build/src/logs_threaded.lib" {"logs_threaded.lib"}
+  "_build/src/logs_threaded.mli" {"logs_threaded.mli"}
+  "_build/src/logs_top_init.ml" {"logs_top_init.ml"}
+]
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+  "_build/test/tags.ml" {"tags.ml"}
+  "_build/test/tool.ml" {"tool.ml"}
+]

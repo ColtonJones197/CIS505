@@ -1,8 +1,11 @@
 opam-version: "2.0"
 compiler: ["conf-withdkml.2" "ocaml-system.4.14.0"]
-roots: ["conf-withdkml.2" "merlin.4.6-414" "ocaml-system.4.14.0"]
+roots: [
+  "conf-withdkml.2" "merlin.4.6-414" "ocaml-system.4.14.0" "utop.2.10.0"
+]
 installed: [
   "base-bigarray.base"
+  "base-bytes.base"
   "base-threads.base"
   "base-unix.base"
   "conf-withdkml.2"
@@ -11,14 +14,33 @@ installed: [
   "dkml-runtime-common-native.1.2.0"
   "dot-merlin-reader.4.6"
   "dune.3.6.2+shim"
+  "dune-configurator.3.10.0"
+  "lambda-term.3.3.1"
+  "logs.0.7.0"
+  "lwt.5.7.0"
+  "lwt_react.1.2.0"
   "merlin.4.6-414"
   "merlin-lib.4.6-414"
+  "mew.0.1.0"
+  "mew_vi.0.5.0"
   "ocaml.4.14.0"
   "ocaml-config.3"
   "ocaml-system.4.14.0"
+  "ocamlbuild.0.14.0"
   "ocamlfind.1.9.1"
+  "ocplib-endian.1.2"
+  "react.1.2.2"
+  "result.1.5"
   "seq.base"
+  "topkg.1.0.6"
+  "trie.1.0.0"
+  "uchar.0.0.2"
+  "utop.2.10.0"
+  "uucp.15.0.0"
+  "uuseg.15.0.0"
+  "uutf.1.0.3"
   "yojson.2.0.2"
+  "zed.3.2.0"
 ]
 pinned: [
   "0install.2.18"

@@ -1,0 +1,92 @@
+(lang dune 3.6)
+(name zed)
+(version 3.2.0)
+(sections (lib .) (libexec .) (doc ../../doc/zed))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   zed.cma
+   zed.cmxa
+   zed.lib
+   zed_char.cmi
+   zed_char.cmt
+   zed_char.cmti
+   zed_char.cmx
+   zed_char.ml
+   zed_char.mli
+   zed_cursor.cmi
+   zed_cursor.cmt
+   zed_cursor.cmti
+   zed_cursor.cmx
+   zed_cursor.ml
+   zed_cursor.mli
+   zed_edit.cmi
+   zed_edit.cmt
+   zed_edit.cmti
+   zed_edit.cmx
+   zed_edit.ml
+   zed_edit.mli
+   zed_input.cmi
+   zed_input.cmt
+   zed_input.cmti
+   zed_input.cmx
+   zed_input.ml
+   zed_input.mli
+   zed_lines.cmi
+   zed_lines.cmt
+   zed_lines.cmti
+   zed_lines.cmx
+   zed_lines.ml
+   zed_lines.mli
+   zed_macro.cmi
+   zed_macro.cmt
+   zed_macro.cmti
+   zed_macro.cmx
+   zed_macro.ml
+   zed_macro.mli
+   zed_rope.cmi
+   zed_rope.cmt
+   zed_rope.cmti
+   zed_rope.cmx
+   zed_rope.ml
+   zed_rope.mli
+   zed_string.cmi
+   zed_string.cmt
+   zed_string.cmti
+   zed_string.cmx
+   zed_string.ml
+   zed_string.mli
+   zed_utf8.cmi
+   zed_utf8.cmt
+   zed_utf8.cmti
+   zed_utf8.cmx
+   zed_utf8.ml
+   zed_utf8.mli
+   zed_utils.cmi
+   zed_utils.cmt
+   zed_utils.cmx
+   zed_utils.ml))
+ (libexec (zed.cmxs))
+ (doc (CHANGES.md LICENSE README.md)))
+(library
+ (name zed)
+ (kind normal)
+ (archives (byte zed.cma) (native zed.cmxa))
+ (plugins (byte zed.cma) (native zed.cmxs))
+ (native_archives zed.lib)
+ (requires react result uchar uutf uucp uuseg)
+ (modes byte native)
+ (modules
+  (unwrapped
+   ((name Zed_char) (obj_name zed_char) (visibility public) (impl) (intf))
+   ((name Zed_cursor) (obj_name zed_cursor) (visibility public) (impl) (intf))
+   ((name Zed_edit) (obj_name zed_edit) (visibility public) (impl) (intf))
+   ((name Zed_input) (obj_name zed_input) (visibility public) (impl) (intf))
+   ((name Zed_lines) (obj_name zed_lines) (visibility public) (impl) (intf))
+   ((name Zed_macro) (obj_name zed_macro) (visibility public) (impl) (intf))
+   ((name Zed_rope) (obj_name zed_rope) (visibility public) (impl) (intf))
+   ((name Zed_string) (obj_name zed_string) (visibility public) (impl) (intf))
+   ((name Zed_utf8) (obj_name zed_utf8) (visibility public) (impl) (intf))
+   ((name Zed_utils) (obj_name zed_utils) (visibility public) (impl)))))
