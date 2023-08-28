@@ -1,1 +1,0 @@
-let path = {|C:/Users/Blitz/AppData/Local/Programs/DISKUV~1/lib/ocaml|}
