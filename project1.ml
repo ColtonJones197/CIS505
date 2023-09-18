@@ -166,7 +166,12 @@ let updateDict new_key new_val dictionary =
    (new_key, new_val) :: dictionary
 
 let rec lookupDict dictionary key =
-   raise KeyNotFound (* CHANGE #8 *)
+   match dictionary with 
+    | [] -> raise KeyNotFound (* CHANGE #8 DONE*)
+    | ((key1,val1) :: dictionary') ->
+      if key = key1
+      then val1
+      else lookupDict dictionary' key
 
 (* DECOMPOSING THE STACK *)
 
@@ -224,12 +229,16 @@ let rec interpret stack dict curfun =
      | "D" -> raise DisplayStack
      | "I" -> 
           let n = top_of stack in
-          interpret stack dict curfun (* CHANGE #9 *)
+          let repeat_x_times x = repeat curfun x n in
+            if n < 0
+            then raise RepeatNegative
+            else interpret (rest_of stack) dict (repeat_x_times) (* CHANGE #9 *)
      | "P" ->  
           (print_string "which function should prep for the current function?\n";
             let str = read_line () in
             let prep = lookupDict dict str in
-            interpret stack dict curfun (* CHANGE #10 *) 
+            let newfun x = curfun (prep x) in
+            interpret stack dict newfun (* CHANGE #10 *) 
           )
      | "R" -> 
           (print_string "which function must be retrieved?\n";
@@ -239,10 +248,12 @@ let rec interpret stack dict curfun =
      | "S" -> 
           (print_string "which name to give the current function?\n";
             let str = read_line () in
-            interpret stack dict curfun (* CHANGE #7 *) 
+            interpret stack (updateDict str curfun dict) curfun (* CHANGE #7 DONE*) 
           )
      | "T" -> raise TopStack 
-     | "W" -> interpret stack dict curfun (* CHANGE #6 *)
+     | "W" -> 
+          let new_fun x = curfun (curfun x) in
+          interpret stack dict (new_fun) (* CHANGE #6 *)
      | "X" -> raise Exit
      | "+" -> 
           interpret (rest_of stack) dict ((+) (top_of stack))
