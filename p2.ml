@@ -283,7 +283,7 @@ let rec commExec:
    | SkipC -> state
    | SeqC(cmd1,cmd2) ->
        let state1 = commExec cmd1 denv penv state in
-       let state2 = commExec cmd2 denv penv state in state   (* CHANGE #1 *)
+       let state2 = commExec cmd2 denv penv state1 in state2   (* CHANGE #1 COMPLETE*)
    | WriteC exp -> 
         let v = expEval exp denv sto
        in (inp, outp @ [v], sto)  
