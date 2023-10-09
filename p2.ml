@@ -257,7 +257,7 @@ and leftEval : leftL -> dataEnv -> store -> location_range =
        in match bounds with
           | [] -> raise TooManyIndices
           | bound1 :: bounds' ->
-              if true (* CHANGE #9 *)
+              if bound1 > index (* CHANGE #9 *)
               then (loc + index, bounds') (* CHANGE #10 *)
               else raise (IndexOutOfBounds(bound1, index))
 
@@ -291,19 +291,22 @@ let rec commExec:
                   and then reverse at the end *) 
    | ReadC lhs ->
       (match inp with
-       | [] -> ([], outp, sto)  (* CHANGE #3 *)
-       | v :: inp' -> (inp, outp, sto))  (* CHANGE #4 *)
+       | [] -> raise InputExhausted  (* CHANGE #3 complete!*)
+       | v :: inp' -> (inp', outp, modifyStore (locEval lhs denv sto) v sto))  (* CHANGE #4 COMPLETE*)
    | IfC(exp,cmd1,cmd2) ->
-          commExec cmd1 denv penv state (* CHANGE #5 *)
+        let expression_result = expEval exp denv sto in
+        if expression_result > 0 
+          then commExec cmd1 denv penv state
+          else commExec cmd2 denv penv state (* CHANGE #5 COMPLETE*)
    | WhileC(exp,cmd) ->
-       commExec (IfC(exp,cmd,SkipC))  (* CHANGE #6 *)
+       commExec (IfC(exp, SeqC(cmd, WhileC(exp, cmd)),SkipC))  (* CHANGE #6 COMPLETE*)
            denv penv state
    | ExpandC id ->
-       commExec SkipC     (* CHANGE #7 *)
+       commExec (retrieveEnv penv id)     (* CHANGE #7 COMPLETE*)
            denv penv state   
    | MutateC(lhs,rhs) ->
        (inp, outp,
-            sto)   (* CHANGE #2 *)
+            (modifyStore (locEval lhs denv sto) (expEval rhs denv sto) sto))   (* CHANGE #2 COMPLETE*)
 
 (* PROCESSING OF DECLARATIONs *)
 
@@ -326,7 +329,7 @@ let declExec: declD -> dataEnv * macroEnv * next
         next)
    | AliasD(new_id, left) -> 
        let loc_range = leftEval left denv initStore
-        in (denv,   (* CHANGE #8 *)
+        in ((insertEnv new_id loc_range denv),   (* CHANGE #8 COMPLETE*)
             penv, next)
 
 let rec declsExec: 
