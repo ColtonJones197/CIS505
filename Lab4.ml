@@ -51,12 +51,12 @@ let expect token tokens = match tokens with
 let rec parseB tokens = match tokens with
  | OpenCurlyT :: tokens0 ->
      let (b1, tokens1) = parseB tokens0 in
-     let (b2, tokens2) = parseB (expect b1 tokens1) in
+     let (b2, tokens2) = parseB (expect CloseCurlyT tokens1) in
      (*let (b2, tokens2) = parseB tokens0 (* MODIFY! *) in*)
     (CurlyB (b1,b2), tokens2)
  | OpenSquareT :: tokens0 ->
      let (b1, tokens1) = parseB tokens0 in
-     let (b2, tokens2) = parseB (expect b1 tokens1) (* MODIFY! *) in
+     let (b2, tokens2) = parseB (expect CloseSquareT tokens1) (* MODIFY! *) in
     (SquareB (b1,b2), tokens2)
  | _ -> (EmptyB, tokens)
 
@@ -64,12 +64,14 @@ let parse tokens = match parseB tokens with
   | (b, []) -> b
   | (_, (token :: _)) ->
           raise (Error ("unused input, starting with "^
-                           (printToken token)^"'"))
+                           (printToken token)^"'"));;
 
 let rec depth b = match b with
     | EmptyB -> 0
-    | CurlyB (b1, b2) -> 1 + max(depth b1, depth b2)
-    | SquareB (b1, b2) -> 2 + max(depth b1, depth b2)
+    | CurlyB (b1, b2) -> let more = max (depth b1) (depth b2) in
+      more + 1
+    | SquareB (b1, b2) -> let more = max (depth b1) (depth b2) in
+      more + 2
 
 let run input_string =
   try depth (parse (lexer input_string)) with 
