@@ -51,11 +51,12 @@ let expect token tokens = match tokens with
 let rec parseB tokens = match tokens with
  | OpenCurlyT :: tokens0 ->
      let (b1, tokens1) = parseB tokens0 in
-     let (b2, tokens2) = parseB tokens0 (* MODIFY! *) in
+     let (b2, tokens2) = parseB (expect b1 tokens1) in
+     (*let (b2, tokens2) = parseB tokens0 (* MODIFY! *) in*)
     (CurlyB (b1,b2), tokens2)
  | OpenSquareT :: tokens0 ->
      let (b1, tokens1) = parseB tokens0 in
-     let (b2, tokens2) = parseB tokens0 (* MODIFY! *) in
+     let (b2, tokens2) = parseB (expect b1 tokens1) (* MODIFY! *) in
     (SquareB (b1,b2), tokens2)
  | _ -> (EmptyB, tokens)
 
