@@ -66,19 +66,22 @@ let parse tokens = match parseB tokens with
           raise (Error ("unused input, starting with "^
                            (printToken token)^"'"))
 
-let rec depth b = 0 (* MODIFY! *)
+let rec depth b = match b with
+    | EmptyB -> 0
+    | CurlyB (b1, b2) -> 1 + max(depth b1, depth b2)
+    | SquareB (b1, b2) -> 2 + max(depth b1, depth b2)
 
 let run input_string =
   try depth (parse (lexer input_string)) with 
   | (Error msg) -> (print_string ("Error: "^msg^"\n"); 0)
 
-let error1 = "{}"   (* MODIFY such that "run error1 ;;" gives
+let error1 = "{"   (* MODIFY such that "run error1 ;;" gives
                         "Error: '}' expected but input exhausted"  *)
 
-let error2 = "{}"   (* MODIFY such that "run error2 ;;" gives
+let error2 = "[}"   (* MODIFY such that "run error2 ;;" gives
                         "Error: ']' expected but '}' seen"         *)
 
-let error3 = "{}";; (* MODIFY such that "run error3 ;;" gives
+let error3 = "{}}";; (* MODIFY such that "run error3 ;;" gives
                         "Error: unused input, starting with '}'"   *) 
 
 
